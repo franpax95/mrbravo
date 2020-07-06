@@ -1,30 +1,12 @@
-.DropdownLink{
-    position: relative;
+.Dropdown{ 
     height: 100%;
-    width: 150px;
+    position: relative; 
 }
-
-.DropdownLink .name{
-    height: 100%;
+.Dropdown .content{
     width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: white;
-    color: #262626;
-}
-.DropdownLink .name:hover{
-    font-weight: bold;
-}
-
-.DropdownLink .content{
-    width: 100%;
-
     position: absolute;
     top: 100%;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,17 +14,7 @@
 
     transition: opacity .5s;
 }
-
-.DropdownLink.visible .content{
-    display: flex;
-    opacity: 1;
-}
-
-.DropdownLink.none .content{
-    display: none;
-    opacity: 0;
-}
-.DropdownLink .content a{
+.Dropdown .content *{
     height: 50px;
     width: 100%;
 
@@ -50,11 +22,16 @@
     justify-content: center;
     align-items: center;
 
-    background-color: white;
-    color: #262626;
+    cursor: pointer;
+    outline: none;
+    border: none;
 
     font-size: 0.9em;
 }
-.DropdownLink .content a:hover{
-    font-weight: bold;
+
+.Dropdown .content img{
+    margin: 0 2px;
+    width: 20px;
+    height: 15px;
+    object-fit: contain;
 }

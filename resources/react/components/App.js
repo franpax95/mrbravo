@@ -4,7 +4,7 @@ import { useTransition, animated } from 'react-spring';
 
 import Navbar from '../components/Navbar';
 // import Header from '../components/Header';
-// import Footer from '../components/Footer';
+import Footer from '../components/Footer';
 
 import Home from '../pages/Home';
 
@@ -26,7 +26,7 @@ const ScrollToTop = () => {
 const App = () => {
     const location = useLocation();
     const transitions = useTransition(location, location => location.pathname, {
-        from: { position: 'absolute', opacity: 0 },
+        from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 }
     });
@@ -40,14 +40,16 @@ const App = () => {
             <ScrollToTop />
 
             {transitions.map(({ item: location, props, key }) => (
-                <animated.div key={key} style={props}>
+                <animated.div key={key} style={{ ...props, minHeight: '100vh', width: '100%' }}>
                     <Switch location={location}>
                         <Route exact path={["/", "/home"]} component={Home} />
                     </Switch>
                 </animated.div>
             ))}
+            
+            <Footer />
         </div>
-        {/* <Footer /> */}
+        
     </>);
 }
 

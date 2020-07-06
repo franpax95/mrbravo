@@ -1,23 +1,17 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { DropdownNavLink } from '../Dropdown';
 
-// import { DropdownLink } from './DropdownLink';
+import { DropdownNavLink, DropdownButton } from '../Dropdown';
 
 import { useLanguage } from '../../hooks/useLanguage';
+
+import { MdLanguage, MdSearch } from 'react-icons/md';
+import { GoSignIn, GoSignOut } from 'react-icons/go';
 
 import './Navbar.css';
 
 const Navbar = () => {
     const [texts, setLang] = useLanguage();
-
-    const dropdownEnter = (e) => {
-        e.target.children[1].style.opacity = 1;
-    }
-
-    const dropdownLeave = (e) => {
-        e.target.children[1].style.opacity = 0;
-    }
 
     return (
         <div className="Navbar">
@@ -37,17 +31,7 @@ const Navbar = () => {
                     <Link to="/">Pantalones</Link>
                 </DropdownNavLink>
 
-                {/* <div className="dropdown" onMouseEnter={dropdownEnter} onMouseLeave={dropdownLeave}>
-                    <NavLink to="/">
-                        {texts.Navbar.about}
-                    </NavLink>
-                    <div className="dropdown-content">
-                        <Link to="/">Primavera</Link>
-                        <Link to="/">Verano</Link>
-                        <Link to="/">Nueva colección</Link>
-                        <Link to="/">Pantalones</Link>
-                    </div>
-                </div> */}
+
 
                 <NavLink to="/contact">
                     {texts.Navbar.contact}
@@ -55,16 +39,34 @@ const Navbar = () => {
             </div>
             
 
-            <div className="center">
-                <h3>(logo)</h3>
-            </div>
+            <Link to="/" className="logo">
+                <img src="/img/logo.png" alt="MrBravo" />
+            </Link>
 
 
             <div className="right">
-                <div>(Búsqueda)</div>
-                <div>{texts.Navbar.login}</div>
-                <div>{texts.Navbar.signup}</div>
-                <div>{texts.Navbar.language}</div>
+                <button><MdSearch />{texts.Navbar.search}</button>
+
+                <Link><GoSignIn />{texts.Navbar.login}</Link>
+
+                <DropdownButton name={<><MdLanguage />{texts.Navbar.language.name}</>}>
+                    <button>
+                        <img src="/img/countryflags/spain.svg" alt={texts.Navbar.language.esp} />
+                        {texts.Navbar.language.esp}
+                    </button>
+                    <button>
+                        <img src="/img/countryflags/unitedkingdom.png" alt={texts.Navbar.language.eng} />
+                        {texts.Navbar.language.eng}
+                    </button>
+                    <button>
+                        <img src="/img/countryflags/germany.svg" alt={texts.Navbar.language.ger} />
+                        {texts.Navbar.language.ger}
+                    </button>
+                    <button>
+                        <img src="/img/countryflags/france.svg" alt={texts.Navbar.language.fre} />
+                        {texts.Navbar.language.fre}
+                    </button>
+                </DropdownButton>
             </div>
         </div>
     );
